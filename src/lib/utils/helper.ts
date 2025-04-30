@@ -9,8 +9,8 @@ export function generateHead(options: HeadOptions) {
   const { title, description, keywords, ...rest } = options;
 
   return () => ({
-    title,
     meta: [
+      ...(title ? [{ title }] : []),
       ...(description ? [{ name: "description", content: description }] : []),
       ...(keywords ? [{ name: "keywords", content: keywords }] : []),
       ...(Object.entries(rest)
