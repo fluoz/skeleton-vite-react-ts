@@ -8,7 +8,7 @@ interface AuthStore {
   removeToken: () => void;
 }
 
-export const useAuth = create(
+export const useAuthStore = create(
   persist<AuthStore>(
     (set) => ({
       token: null,
