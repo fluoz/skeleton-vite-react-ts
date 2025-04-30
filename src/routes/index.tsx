@@ -12,9 +12,10 @@ import { Button } from "@/components/ui/button";
 import { generateHead } from "@/lib/utils/helper";
 
 export const Route = createFileRoute("/")({
-  head: generateHead({
-    title: "Home",
-  }),
+  head: () =>
+    generateHead({
+      title: "Home",
+    }),
   component: Home,
 });
 

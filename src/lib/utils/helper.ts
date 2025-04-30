@@ -8,7 +8,7 @@ type HeadOptions = {
 export function generateHead(options: HeadOptions) {
   const { title, description, keywords, ...rest } = options;
 
-  return () => ({
+  return {
     meta: [
       ...(title ? [{ title }] : []),
       ...(description ? [{ name: "description", content: description }] : []),
@@ -17,5 +17,5 @@ export function generateHead(options: HeadOptions) {
         .map(([key, value]) => (value ? { name: key, content: value } : null))
         .filter(Boolean) as { name: string; content: string }[]),
     ],
-  });
+  };
 }
