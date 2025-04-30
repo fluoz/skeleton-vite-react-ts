@@ -1,4 +1,4 @@
-import { userRoutes } from "./user";
+import { userRoutes } from "./user/api";
 
 export const api = {
   user: userRoutes,
