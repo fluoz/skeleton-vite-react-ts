@@ -1,6 +1,7 @@
 import { api } from "@/api";
-import { User } from "@/api/user/type";
+import { IErrorDeleteUserResponse, IUser } from "@/api/user/type";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { AxiosError } from "axios";
 import toast from "react-hot-toast";
 
 export const useDeleteUser = () => {
@@ -11,13 +12,17 @@ export const useDeleteUser = () => {
     onMutate: async (deletedUser) => {
       await queryClient.cancelQueries({ queryKey: ["users"] });
       const previousUsers = queryClient.getQueryData(["users"]);
-      queryClient.setQueryData<User[]>(["users"], (oldData) => {
+      queryClient.setQueryData<IUser[]>(["users"], (oldData) => {
         if (!oldData) return oldData;
         return oldData.filter((user) => user.id !== deletedUser.userId);
       });
       return { previousUsers };
     },
-    onError: (error, variables, context) => {
+    onError: (
+      error: AxiosError<IErrorDeleteUserResponse>,
+      variables,
+      context,
+    ) => {
       toast.error(
         "Failed to delete user " + variables.userId + ": " + error.message,
       );

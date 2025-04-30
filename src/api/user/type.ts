@@ -1,15 +1,19 @@
+import { IDataResponse } from "@/types/response.type";
 import { UserRole } from "@/types/user.type";
 
-export interface GetUserResponse {
-  message: string;
-  data: User[];
+export interface IGetUserResponse extends IDataResponse {
+  data: IUser[];
 }
 
-export interface DeleteUserResponse {
-  message: string;
+export interface IDeleteUserResponse extends IDataResponse {
+  data: string;
 }
 
-export interface User {
+export interface IErrorDeleteUserResponse extends IDataResponse {
+  error: string;
+}
+
+export interface IUser {
   id: string;
   email: string;
   name: string;
