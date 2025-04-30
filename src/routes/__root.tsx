@@ -1,4 +1,4 @@
-import { Outlet, createRootRoute } from "@tanstack/react-router";
+import { HeadContent, Outlet, createRootRoute } from "@tanstack/react-router";
 import Providers from "@/components/providers";
 
 export const Route = createRootRoute({
@@ -7,8 +7,11 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   return (
-    <Providers>
-      <Outlet />
-    </Providers>
+    <>
+      <HeadContent />
+      <Providers>
+        <Outlet />
+      </Providers>
+    </>
   );
 }

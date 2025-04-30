@@ -9,8 +9,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "@/components/ui/form";
 import TextInput from "@/components/form/text-input";
 import { Button } from "@/components/ui/button";
+import { generateHead } from "@/lib/utils/helper";
 
 export const Route = createFileRoute("/")({
+  head: generateHead({
+    title: "Home",
+  }),
   component: Home,
 });
 
