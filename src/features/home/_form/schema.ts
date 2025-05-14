@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const UserValidation = z.object({
+export const UserSchema = z.object({
   userId: z
     .string({
       required_error: "User ID is required",
@@ -9,4 +9,4 @@ export const UserValidation = z.object({
     .min(12, "User ID must be at least 12 characters long"),
 });
 
-export type UserValidationType = z.infer<typeof UserValidation>;
+export type UserSchemaType = z.infer<typeof UserSchema>;
