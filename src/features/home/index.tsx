@@ -4,16 +4,21 @@ import { UserSchemaType } from "./_form/schema";
 import { Form } from "@/components/ui/form";
 import TextInput from "@/components/form/text-input";
 import { Button } from "@/components/ui/button";
+import { getRouteApi } from "@tanstack/react-router";
+
+const route = getRouteApi("/");
 
 const HomePage = () => {
   const { deleteUser, isDeleting } = useUser({ withFetchAll: false });
 
   const form = useUserForm();
 
+  const navigate = route.useNavigate();
+
   const onSubmit = async (data: UserSchemaType) => {
     deleteUser(data, {
       onSuccess: () => {
-        console.log("User deleted successfully");
+        navigate({ to: "/" });
       },
       onError: (error) => {
         console.error("Error deleting user:", error);
